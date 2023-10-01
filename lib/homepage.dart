@@ -16,14 +16,20 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Colors.black,
         color: Colors.white,
         activeColor: Colors.white,
-        gap: 8, 
+        gap: 8,
         tabs: [
-          GButton(icon: Icons.home,
-                  text: 'Home',),
-          GButton(icon: Icons.settings,
-                  text: 'Settings',),
-          GButton(icon: Icons.contact_emergency_outlined,
-                  text: 'Assistant', ),
+          GButton(
+            icon: Icons.home,
+            text: 'Home',
+          ),
+          GButton(
+            icon: Icons.settings,
+            text: 'Settings',
+          ),
+          GButton(
+            icon: Icons.contact_emergency_outlined,
+            text: 'Assistant',
+          ),
         ],
       ),
     );
