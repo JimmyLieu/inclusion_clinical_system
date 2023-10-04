@@ -1,18 +1,27 @@
 import 'package:flutter/material.dart';
-import 'homepage.dart';
+
+import 'constants/constants.dart';
+import 'screens/chat_screen.dart';
 
 void main() {
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
+  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
-      home: HomePage(),
+      theme: ThemeData(
+          scaffoldBackgroundColor: scaffoldBackgroundColor,
+          appBarTheme: AppBarTheme(
+            color: cardColor,
+          )),
+      home: const ChatScreen(),
     );
   }
 }
