@@ -16,7 +16,7 @@ class ChatWidget extends StatelessWidget {
         color: chatIndex == 0 ? scaffoldBackgroundColor : cardColor,
         child: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Row(children: [
+          child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
             Image.asset(
               chatIndex == 0 ? AssetsManager.userImage : AssetsManager.botImage,
               height: 30,
@@ -25,9 +25,29 @@ class ChatWidget extends StatelessWidget {
             const SizedBox(
               width: 8,
             ),
-            const TextWidget(
-              label: "Hello World!",
-            )
+            Expanded(
+              child: TextWidget(
+                label: msg,
+              ),
+            ),
+            chatIndex == 0
+                ? const SizedBox.shrink()
+                : Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    mainAxisSize: MainAxisSize.min,
+                    children: const [
+                        Icon(
+                          Icons.arrow_drop_up,
+                          color: Colors.white,
+                        ),
+                        SizedBox(
+                          width: 5,
+                        ),
+                        Icon(
+                          Icons.arrow_drop_down,
+                          color: Colors.white,
+                        )
+                      ])
           ]),
         ),
       )

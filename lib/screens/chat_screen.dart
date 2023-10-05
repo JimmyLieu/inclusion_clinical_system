@@ -1,7 +1,12 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:inclusion_clinical_system/constants/constants.dart';
+import 'package:inclusion_clinical_system/services/api_services.dart';
 import 'package:inclusion_clinical_system/services/assets_manager.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:inclusion_clinical_system/services/services.dart';
+import 'package:inclusion_clinical_system/widgets/text_widget.dart';
 
 import '../widgets/chat_widget.dart';
 
@@ -41,7 +46,9 @@ class _ChatScreenState extends State<ChatScreen> {
         title: Text("JimmyGPT"),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () async {
+              await Services.showModalSheet(context: context);
+            },
             icon: Icon(Icons.more_vert_rounded, color: Colors.white),
           ),
         ],
@@ -89,7 +96,13 @@ class _ChatScreenState extends State<ChatScreen> {
                         ),
                       ),
                       IconButton(
-                        onPressed: () {},
+                        onPressed: () async {
+                          try {
+                            await ApiService.getModels();
+                          } catch (error) {
+                            print("error $error");
+                          }
+                        },
                         icon: Icon(
                           Icons.send,
                           color: Colors.white,
