@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-
+import 'package:inclusion_clinical_system/providers/models_provider.dart';
+import 'package:provider/provider.dart';
 import 'constants/constants.dart';
+import 'providers/chats_provider.dart';
 import 'screens/chat_screen.dart';
 
 void main() {
@@ -13,15 +15,25 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-          scaffoldBackgroundColor: scaffoldBackgroundColor,
-          appBarTheme: AppBarTheme(
-            color: cardColor,
-          )),
-      home: const ChatScreen(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (_) => ModelsProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => ChatProvider(),
+        ),
+      ],
+      child: MaterialApp(
+        title: 'Inclusion Clinical System',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+            scaffoldBackgroundColor: scaffoldBackgroundColor,
+            appBarTheme: AppBarTheme(
+              color: cardColor,
+            )),
+        home: const ChatScreen(),
+      ),
     );
   }
 }
