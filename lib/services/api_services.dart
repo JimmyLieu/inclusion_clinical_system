@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
 
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:inclusion_clinical_system/constants/api_consts.dart';
 import 'package:inclusion_clinical_system/models/chat_model.dart';
@@ -39,12 +40,7 @@ class ApiService {
   static Future<List<ChatModel>> sendMessageGPT({
     required String message,
     required String modelId,
-    String context = ' in healthcare',
   }) async {
-    //Creates the context of the users message to be interpreted 'in healthcare'
-    String modifiedMessage = '$message$context';
-    log('Modified Message: $modifiedMessage');
-
     try {
       log("modelId $modelId");
       var response = await http.post(
@@ -59,7 +55,7 @@ class ApiService {
             "messages": [
               {
                 "role": "user",
-                "content": modifiedMessage, // Takes in the modified message
+                "content": message, // Takes in the modified message
               }
             ]
           },
@@ -104,14 +100,11 @@ class ApiService {
         body: jsonEncode(
           {
             "model": modelId,
-            "prompt": message,
+            "prompt": message + "in minecraft. ", //Prompt the message to be put in healthcare
             "max_tokens": 300,
           },
         ),
       );
-
-      // Map jsonResponse = jsonDecode(response.body);
-
       Map jsonResponse = json.decode(utf8.decode(response.bodyBytes));
       if (jsonResponse['error'] != null) {
         // print("jsonResponse['error'] ${jsonResponse['error']["message"]}");

@@ -46,6 +46,7 @@ class _ChatScreenState extends State<ChatScreen> {
   Widget build(BuildContext context) {
     final modelsProvider = Provider.of<ModelsProvider>(context);
     final chatProvider = Provider.of<ChatProvider>(context);
+    // Color textColor = Colors.black;
     return Scaffold(
       appBar: AppBar(
         elevation: 2,
@@ -73,11 +74,14 @@ class _ChatScreenState extends State<ChatScreen> {
                   itemBuilder: (context, index) {
                     return ChatWidget(
                       msg: chatProvider
-                          .getChatList[index].msg, // chatList[index].msg,
+                          .getChatList[index].msg,
+                           // chatList[index].msg,
                       chatIndex: chatProvider.getChatList[index]
                           .chatIndex, //chatList[index].chatIndex,
                       shouldAnimate:
                           chatProvider.getChatList.length - 1 == index,
+                      textStyle: const TextStyle(color: Colors.black), // Set text color here
+
                     );
                   }),
             ),
@@ -118,7 +122,7 @@ class _ChatScreenState extends State<ChatScreen> {
                               chatProvider: chatProvider);
                         },
                         icon: const Icon(
-                          Icons.send,
+                          Icons.send, 
                           color: Colors.white,
                         ))
                   ],
@@ -168,7 +172,9 @@ class _ChatScreenState extends State<ChatScreen> {
       setState(() {
         _isTyping = true;
         // chatList.add(ChatModel(msg: textEditingController.text, chatIndex: 0));
-        chatProvider.addUserMessage(msg: msg);
+        chatProvider.addUserMessage(
+          msg: msg,
+        );
         textEditingController.clear();
         focusNode.unfocus();
       });

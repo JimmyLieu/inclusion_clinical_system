@@ -11,7 +11,7 @@ class ChatWidget extends StatelessWidget {
       {super.key,
       required this.msg,
       required this.chatIndex,
-      this.shouldAnimate = false});
+      this.shouldAnimate = false, required TextStyle textStyle});
 
   final String msg;
   final int chatIndex;
@@ -21,7 +21,7 @@ class ChatWidget extends StatelessWidget {
     return Column(
       children: [
         Material(
-          color: chatIndex == 0 ? scaffoldBackgroundColor : cardColor,
+          color: chatIndex == 0 ? userMessage : botMessage,
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(
@@ -45,7 +45,7 @@ class ChatWidget extends StatelessWidget {
                       : shouldAnimate
                           ? DefaultTextStyle(
                               style: const TextStyle(
-                                  color: Colors.white,
+                                  color: Colors.black,
                                   fontWeight: FontWeight.w500,
                                   fontSize: 14),
                               child: AnimatedTextKit(
@@ -62,7 +62,7 @@ class ChatWidget extends StatelessWidget {
                           : Text(
                               msg.trim(),
                               style: const TextStyle(
-                                  color: Colors.white,
+                                  color: Colors.black,
                                   fontWeight: FontWeight.w700,
                                   fontSize: 12),
                             ),

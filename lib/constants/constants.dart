@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:inclusion_clinical_system/widgets/text_widget.dart';
 
-Color scaffoldBackgroundColor = const Color(0xFF343541);
-Color cardColor = const Color(0xFF444654);
-
+Color scaffoldBackgroundColor = const Color(0xFFFCF7F8);
+//Color scaffoldBackgroundColor = const Color.fromARGB(255, 255, 247, 0);
+Color cardColor = const Color(0xFF5B616A);
+Color botMessage = const Color(0xFFABA9C3);
+Color userMessage = const Color(0xFF275DAD);
 /* List<String> models = [
   'Model1',
   'Model2',
